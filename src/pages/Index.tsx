@@ -303,6 +303,7 @@ const Slide8 = () => (
           { num: "1", title: "Информационная перегрузка", desc: "Частые изменения интерфейса" },
           { num: "2", title: "Разный уровень безопасности", desc: "Т-Банк и ВТБ отстают от СберБанка" },
           { num: "3", title: "Фрагментация бизнес-функций", desc: "Отдельные приложения для бизнеса" },
+          { num: "4", title: "Сложность возврата ошибочных переводов", desc: "Разный алгоритм у всех банков, у ВТБ — дольше всего" },
         ].map(({ num, title, desc }) => (
           <div key={num} className="flex items-start gap-4">
             <div style={{ background: TEAL, color: "white", borderRadius: "50%", width: pt(56), height: pt(56), display: "flex", alignItems: "center", justifyContent: "center", fontSize: pt(34), fontWeight: 700, flexShrink: 0 }}>{num}</div>
@@ -423,7 +424,6 @@ const Slide12 = () => (
       <div style={{ fontWeight: 700, fontSize: "42px", letterSpacing: "1px", marginBottom: "20px", textAlign: "center" }}>
         Спасибо за внимание!
       </div>
-      <div style={{ fontSize: "20px", opacity: 0.9, fontWeight: 500 }}>Вопросы к выступающему</div>
       <div style={{ marginTop: "50px", fontSize: "14px", opacity: 0.65 }}>Кочетков Артём Николаевич · Группа 514 · Самара, 2026</div>
     </div>
     <div className="absolute bottom-3 right-4" style={{ fontSize: "9px", color: "rgba(255,255,255,0.4)" }}>12</div>
