@@ -21,18 +21,22 @@ const LogoWhite = ({ height = 56 }: { height?: number }) => (
   />
 );
 
-const ArrowTitle = ({ title, bold = false }: { title: string; bold?: boolean }) => (
-  <div className="flex items-center mb-6">
+// Перевод кегля PowerPoint (pt) в px внутри слайда-превью шириной ~780px (4:3 = 960pt)
+const pt = (size: number) => `${(size * 780) / 960}px`;
+
+const ArrowTitle = ({ title }: { title: string }) => (
+  <div className="flex items-center mb-7">
     <div
-      className="relative flex items-center px-6 py-2.5 text-white"
+      className="relative flex items-center text-white"
       style={{
         background: TEAL_BG,
-        clipPath: "polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)",
+        clipPath: "polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%)",
         fontFamily: "Montserrat, sans-serif",
-        fontWeight: bold ? 700 : 600,
-        fontSize: "17px",
+        fontWeight: 700,
+        fontSize: pt(44),
         letterSpacing: "0.3px",
-        minWidth: "260px",
+        padding: `${pt(14)} ${pt(40)} ${pt(14)} ${pt(28)}`,
+        minWidth: pt(620),
       }}
     >
       {title}
@@ -62,31 +66,25 @@ const Slide1 = () => (
       {/* Шапка */}
       <div className="flex items-start justify-between mb-2">
         <LogoWhite height={56} />
-        <div style={{ textAlign: "center", fontSize: "9px", lineHeight: 1.6, opacity: 0.9, maxWidth: "340px" }}>
-          <div>Федеральное государственное образовательное бюджетное</div>
-          <div>учреждение высшего образования</div>
-          <div style={{ fontWeight: 600 }}>«Финансовый университет при Правительстве Российской Федерации»</div>
-          <div style={{ fontWeight: 600 }}>(Финуниверситет)</div>
+        <div style={{ textAlign: "center", fontSize: pt(13), lineHeight: 1.5, opacity: 0.9, maxWidth: "360px" }}>
+          <div style={{ fontWeight: 600 }}>«Финансовый университет при Правительстве РФ»</div>
           <div style={{ marginTop: "6px", fontWeight: 600 }}>Самарский финансово-экономический колледж</div>
-          <div style={{ fontWeight: 600 }}>(Самарский филиал Финуниверситета)</div>
         </div>
       </div>
 
       {/* Главный заголовок */}
       <div className="flex-1 flex items-center justify-center">
-        <div style={{ textAlign: "center", fontWeight: 700, fontSize: "22px", lineHeight: 1.4, letterSpacing: "0.5px", maxWidth: "82%" }}>
-          ТЕМА «СРАВНЕНИЕ МОБИЛЬНЫХ ПРИЛОЖЕНИЙ БАНКОВ»
+        <div style={{ textAlign: "center", fontWeight: 700, fontSize: pt(46), lineHeight: 1.35, letterSpacing: "0.5px", maxWidth: "88%" }}>
+          СРАВНЕНИЕ МОБИЛЬНЫХ ПРИЛОЖЕНИЙ БАНКОВ
         </div>
       </div>
 
       {/* Подпись */}
-      <div style={{ textAlign: "right", fontSize: "11px", lineHeight: 1.8, fontWeight: 600 }}>
-        <div>Выполнил: студент группы 514</div>
-        <div>Специальности 38.02.07</div>
-        <div>Кочетков Артём Николаевич</div>
-        <div>Руководитель: Гапонцева Татьяна Ивановна</div>
+      <div style={{ textAlign: "right", fontSize: pt(20), lineHeight: 1.7, fontWeight: 600 }}>
+        <div>Выполнил: Кочетков А. Н., группа 514</div>
+        <div>Руководитель: Гапонцева Т. И.</div>
       </div>
-      <div style={{ textAlign: "center", fontWeight: 700, fontSize: "12px", marginTop: "10px" }}>
+      <div style={{ textAlign: "center", fontWeight: 700, fontSize: pt(22), marginTop: "12px" }}>
         Самара 2026
       </div>
     </div>
@@ -101,23 +99,18 @@ const Slide2 = () => (
         <ArrowTitle title="Актуальность темы" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "12px", lineHeight: 1.8, color: "#1a1a1a", paddingLeft: "4px" }}>
-        <div className="flex items-start gap-2 mb-2">
-          <span style={{ color: TEAL, fontWeight: 700, marginTop: "1px" }}>▸</span>
-          <span>Мобильным банком пользуются <strong>более 70% россиян</strong></span>
-        </div>
-        <div className="flex items-start gap-2 mb-2">
-          <span style={{ color: TEAL, fontWeight: 700, marginTop: "1px" }}>▸</span>
-          <span>Высокая конкуренция → банки постоянно обновляют приложения</span>
-        </div>
-        <div className="flex items-start gap-2 mb-2">
-          <span style={{ color: TEAL, fontWeight: 700, marginTop: "1px" }}>▸</span>
-          <span>Пользователю необходимо выбирать удобный и безопасный сервис</span>
-        </div>
-        <div className="flex items-start gap-2 mb-2">
-          <span style={{ color: TEAL, fontWeight: 700, marginTop: "1px" }}>▸</span>
-          <span>Изменения на рынке РФ: уход иностранных игроков, развитие RuStore, новые требования к безопасности</span>
-        </div>
+      <div style={{ fontSize: pt(34), lineHeight: 1.5, color: "#1a1a1a", paddingLeft: "6px", display: "flex", flexDirection: "column", gap: pt(22) }}>
+        {[
+          <span key="1">Мобильным банком пользуются <strong style={{ color: TEAL }}>более 70% россиян</strong></span>,
+          "Высокая конкуренция — банки постоянно обновляют приложения",
+          "Важно выбрать удобный и безопасный сервис",
+          "Уход иностранных игроков, развитие RuStore",
+        ].map((t, i) => (
+          <div key={i} className="flex items-start gap-3">
+            <span style={{ color: TEAL, fontWeight: 700 }}>▸</span>
+            <span>{t}</span>
+          </div>
+        ))}
       </div>
     </div>
     <div className="absolute bottom-3 right-4" style={{ fontSize: "9px", color: "#bbb" }}>2</div>
@@ -132,26 +125,24 @@ const Slide3 = () => (
         <ArrowTitle title="Цель, объект, предмет, задачи" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11.5px", lineHeight: 1.75, color: "#1a1a1a" }}>
-        <div className="mb-3">
+      <div style={{ fontSize: pt(32), lineHeight: 1.5, color: "#1a1a1a" }}>
+        <div style={{ marginBottom: pt(16) }}>
           <span style={{ fontWeight: 700, color: TEAL }}>Цель: </span>
-          сравнить мобильные приложения СберБанк, Т-Банк, ВТБ
+          сравнить приложения СберБанк, Т-Банк, ВТБ
         </div>
-        <div className="mb-1">
+        <div style={{ marginBottom: pt(16) }}>
           <span style={{ fontWeight: 700, color: TEAL }}>Объект: </span>
           мобильные банковские приложения
         </div>
-        <div className="mb-3">
-          <span style={{ fontWeight: 700, color: TEAL }}>Предмет: </span>
-          функциональные и пользовательские характеристики
+        <div style={{ fontWeight: 700, color: TEAL, marginBottom: pt(12) }}>Задачи:</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: pt(12) }}>
+          {["Разработать критерии сравнения", "Провести оценку по балльной шкале", "Составить итоговый рейтинг"].map((t, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <span style={{ background: TEAL, color: "white", borderRadius: "50%", width: pt(36), height: pt(36), display: "flex", alignItems: "center", justifyContent: "center", fontSize: pt(22), fontWeight: 700, flexShrink: 0 }}>{i + 1}</span>
+              <span>{t}</span>
+            </div>
+          ))}
         </div>
-        <div style={{ fontWeight: 700, color: TEAL, marginBottom: "6px" }}>Задачи:</div>
-        {["Уточнить понятие мобильного банкинга", "Разработать критерии сравнения", "Провести сравнение по балльной шкале", "Составить рейтинг"].map((t, i) => (
-          <div key={i} className="flex items-start gap-2 mb-1.5">
-            <span style={{ background: TEAL, color: "white", borderRadius: "50%", width: "18px", height: "18px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, flexShrink: 0, marginTop: "1px" }}>{i + 1}</span>
-            <span>{t}</span>
-          </div>
-        ))}
       </div>
     </div>
     <div className="absolute bottom-3 right-4" style={{ fontSize: "9px", color: "#bbb" }}>3</div>
@@ -166,34 +157,34 @@ const Slide4 = () => (
         <ArrowTitle title="Критерии и методика" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11px", color: "#1a1a1a" }}>
-        <table style={{ width: "55%", borderCollapse: "collapse", marginBottom: "14px" }}>
+      <div style={{ fontSize: pt(28), color: "#1a1a1a" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: pt(20) }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              <th style={{ padding: "6px 10px", textAlign: "left", fontWeight: 700, fontSize: "11px" }}>Критерий</th>
-              <th style={{ padding: "6px 10px", textAlign: "center", fontWeight: 700, fontSize: "11px" }}>Макс. балл</th>
+              <th style={{ padding: `${pt(12)} ${pt(18)}`, textAlign: "left", fontWeight: 700 }}>Критерий</th>
+              <th style={{ padding: `${pt(12)} ${pt(18)}`, textAlign: "center", fontWeight: 700 }}>Балл</th>
             </tr>
           </thead>
           <tbody>
             {[["Функциональность", "25"], ["Юзабилити", "30"], ["Безопасность", "25"], ["Цифровой офис", "20"]].map(([c, b], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "5px 10px", borderBottom: "1px solid #e0eaea" }}>{c}</td>
-                <td style={{ padding: "5px 10px", textAlign: "center", borderBottom: "1px solid #e0eaea" }}>{b}</td>
+                <td style={{ padding: `${pt(10)} ${pt(18)}`, borderBottom: "1px solid #e0eaea" }}>{c}</td>
+                <td style={{ padding: `${pt(10)} ${pt(18)}`, textAlign: "center", borderBottom: "1px solid #e0eaea", fontWeight: 700, fontSize: pt(40), color: TEAL }}>{b}</td>
               </tr>
             ))}
             <tr style={{ background: TEAL, color: "white", fontWeight: 700 }}>
-              <td style={{ padding: "6px 10px" }}>ИТОГО</td>
-              <td style={{ padding: "6px 10px", textAlign: "center" }}>100</td>
+              <td style={{ padding: `${pt(12)} ${pt(18)}` }}>ИТОГО</td>
+              <td style={{ padding: `${pt(12)} ${pt(18)}`, textAlign: "center", fontSize: pt(40) }}>100</td>
             </tr>
           </tbody>
         </table>
-        <div style={{ fontWeight: 700, color: TEAL, marginBottom: "6px" }}>Шкала оценки:</div>
-        {[["90–100 баллов", "отлично"], ["75–89 баллов", "хорошо"], ["60–74 балла", "удовлетворительно"]].map(([s, l], i) => (
-          <div key={i} className="flex items-center gap-2 mb-1.5">
-            <span style={{ background: TEAL, color: "white", padding: "1px 8px", borderRadius: "3px", fontSize: "10px", fontWeight: 600 }}>{s}</span>
-            <span>— {l}</span>
-          </div>
-        ))}
+        <div style={{ display: "flex", gap: pt(14), flexWrap: "wrap" }}>
+          {[["90–100", "отлично"], ["75–89", "хорошо"], ["60–74", "удовл."]].map(([s, l], i) => (
+            <span key={i} style={{ background: "#f5fafa", border: `1px solid ${TEAL}`, color: "#1a1a1a", padding: `${pt(8)} ${pt(16)}`, borderRadius: "4px", fontSize: pt(26) }}>
+              <strong style={{ color: TEAL }}>{s}</strong> — {l}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
     <div className="absolute bottom-3 right-4" style={{ fontSize: "9px", color: "#bbb" }}>4</div>
@@ -208,29 +199,31 @@ const Slide5 = () => (
         <ArrowTitle title="Результаты анализа" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11px", color: "#1a1a1a" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "14px" }}>
+      <div style={{ fontSize: pt(28), color: "#1a1a1a" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: pt(22) }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              {["Банк", "Функц.", "Юзаб.", "Безоп.", "Цифр. офис", "ИТОГО"].map((h, i) => (
-                <th key={i} style={{ padding: "6px 8px", textAlign: i === 0 ? "left" : "center", fontWeight: 700, fontSize: "10.5px" }}>{h}</th>
+              {["Банк", "Функц.", "Юзаб.", "Безоп.", "Цифр.", "ИТОГО"].map((h, i) => (
+                <th key={i} style={{ padding: `${pt(12)} ${pt(10)}`, textAlign: i === 0 ? "left" : "center", fontWeight: 700, fontSize: pt(26) }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {[["СберБанк Онлайн", "24", "22", "24", "20", "90"], ["Т-Банк", "21", "28", "21", "19", "89"], ["ВТБ Онлайн", "20", "25", "20", "18", "83"]].map(([bank, ...vals], i) => (
+            {[["СберБанк", "24", "22", "24", "20", "90"], ["Т-Банк", "21", "28", "21", "19", "89"], ["ВТБ", "20", "25", "20", "18", "83"]].map(([bank, ...vals], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "5px 8px", borderBottom: "1px solid #e0eaea", fontWeight: 600 }}>{bank}</td>
-                {vals.map((v, j) => (
-                  <td key={j} style={{ padding: "5px 8px", textAlign: "center", borderBottom: "1px solid #e0eaea", fontWeight: j === vals.length - 1 ? 700 : 400, color: j === vals.length - 1 ? TEAL : "inherit" }}>{v}</td>
-                ))}
+                <td style={{ padding: `${pt(12)} ${pt(10)}`, borderBottom: "1px solid #e0eaea", fontWeight: 700 }}>{bank}</td>
+                {vals.map((v, j) => {
+                  const isTotal = j === vals.length - 1;
+                  return (
+                    <td key={j} style={{ padding: `${pt(12)} ${pt(10)}`, textAlign: "center", borderBottom: "1px solid #e0eaea", fontWeight: isTotal ? 700 : 400, color: isTotal ? TEAL : "inherit", fontSize: isTotal ? pt(40) : pt(28) }}>{v}</td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="flex gap-6" style={{ fontSize: "11.5px" }}>
-          <div><span style={{ fontWeight: 700, color: TEAL }}>Лидер:</span> СберБанк (90 баллов)</div>
-          <div><span style={{ fontWeight: 700, color: TEAL }}>Отрыв минимальный:</span> Т-Банк (89 баллов)</div>
+        <div style={{ fontSize: pt(30) }}>
+          <span style={{ fontWeight: 700, color: TEAL }}>Лидер:</span> СберБанк — <strong style={{ color: TEAL }}>90</strong> баллов
         </div>
       </div>
     </div>
@@ -246,16 +239,21 @@ const Slide6 = () => (
         <ArrowTitle title="Сильные и слабые стороны" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "10.5px", color: "#1a1a1a", display: "flex", flexDirection: "column", gap: "8px" }}>
+      <div style={{ fontSize: pt(26), color: "#1a1a1a", display: "flex", flexDirection: "column", gap: pt(16) }}>
         {[
-          { name: "СберБанк Онлайн", score: 90, pros: "Максимальная функциональность, безопасность, доступ к Госуслугам", cons: "Перегруженный интерфейс, частые изменения" },
-          { name: "Т-Банк", score: 89, pros: "Лучшее юзабилити, кэшбэк, минимум шагов для операций", cons: "Ниже баллы по безопасности и функциональности" },
-          { name: "ВТБ Онлайн", score: 83, pros: "Гибкая настройка виджетов, лидер по доступности", cons: "Отстаёт по функциональности и безопасности" },
+          { name: "СберБанк", score: 90, pros: "Максимум функций и безопасности", cons: "Перегруженный интерфейс" },
+          { name: "Т-Банк", score: 89, pros: "Лучшее юзабилити, кэшбэк", cons: "Ниже безопасность" },
+          { name: "ВТБ", score: 83, pros: "Гибкая настройка виджетов", cons: "Отстаёт по функциональности" },
         ].map(({ name, score, pros, cons }, i) => (
-          <div key={i} style={{ border: `1px solid ${TEAL}30`, borderLeft: `3px solid ${TEAL}`, padding: "8px 10px", borderRadius: "3px", background: "#f9fefe" }}>
-            <div style={{ fontWeight: 700, fontSize: "12px", color: TEAL, marginBottom: "4px" }}>{name} <span style={{ background: TEAL, color: "white", borderRadius: "3px", padding: "1px 6px", fontSize: "10px", marginLeft: "6px" }}>{score} б.</span></div>
-            <div className="flex items-start gap-1.5 mb-1"><span style={{ color: "#2a9d2a", fontWeight: 700 }}>✓</span><span>{pros}</span></div>
-            <div className="flex items-start gap-1.5"><span style={{ color: "#c0392b", fontWeight: 700 }}>✗</span><span>{cons}</span></div>
+          <div key={i} style={{ border: `1px solid ${TEAL}30`, borderLeft: `5px solid ${TEAL}`, padding: `${pt(14)} ${pt(20)}`, borderRadius: "4px", background: "#f9fefe", display: "flex", alignItems: "center", gap: pt(20) }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: pt(150) }}>
+              <span style={{ fontWeight: 700, fontSize: pt(28), color: TEAL }}>{name}</span>
+              <span style={{ fontWeight: 700, fontSize: pt(40), color: TEAL, lineHeight: 1 }}>{score}</span>
+            </div>
+            <div style={{ flex: 1 }}>
+              <div className="flex items-start gap-2" style={{ marginBottom: pt(6) }}><span style={{ color: "#2a9d2a", fontWeight: 700 }}>✓</span><span>{pros}</span></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#c0392b", fontWeight: 700 }}>✗</span><span>{cons}</span></div>
+            </div>
           </div>
         ))}
       </div>
@@ -272,34 +270,19 @@ const Slide7 = () => (
         <ArrowTitle title="Результаты опроса (25 чел.)" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "10.5px", color: "#1a1a1a" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "10px" }}>
-          <thead>
-            <tr style={{ background: TEAL, color: "white" }}>
-              {["Банк", "Пользов.", "Безопасн.", "Юзабил.", "Функц.", "Цифр. офис"].map((h, i) => (
-                <th key={i} style={{ padding: "5px 7px", textAlign: i === 0 ? "left" : "center", fontSize: "10px", fontWeight: 700 }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {[["СберБанк", "9", "7", "5", "8", "6"], ["Т-Банк", "9", "5", "8", "6", "5"], ["ВТБ", "7", "4", "5", "4", "3"]].map(([bank, ...vals], i) => (
-              <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "4px 7px", borderBottom: "1px solid #e0eaea", fontWeight: 600 }}>{bank}</td>
-                {vals.map((v, j) => <td key={j} style={{ padding: "4px 7px", textAlign: "center", borderBottom: "1px solid #e0eaea" }}>{v}</td>)}
-              </tr>
-            ))}
-            <tr style={{ background: TEAL + "22", fontWeight: 700 }}>
-              <td style={{ padding: "4px 7px" }}>ИТОГО</td>
-              {["25", "16", "18", "18", "14"].map((v, i) => <td key={i} style={{ padding: "4px 7px", textAlign: "center" }}>{v}</td>)}
-            </tr>
-          </tbody>
-        </table>
-        <div style={{ fontSize: "9.5px", fontStyle: "italic", color: "#666", marginBottom: "8px" }}>* Каждый респондент мог выбрать несколько критериев</div>
-        <div style={{ fontWeight: 700, color: TEAL, marginBottom: "4px" }}>Вывод:</div>
-        <div className="flex flex-col gap-1">
-          <div className="flex items-start gap-1.5"><span style={{ color: TEAL }}>▸</span><span>СберБанк и Т-Банк — самые популярные (по 36%)</span></div>
-          <div className="flex items-start gap-1.5"><span style={{ color: TEAL }}>▸</span><span>Функциональность и юзабилити — важнейшие критерии (по 18 выборов)</span></div>
-          <div className="flex items-start gap-1.5"><span style={{ color: TEAL }}>▸</span><span>Результаты опроса коррелируют с балльным рейтингом</span></div>
+      <div style={{ color: "#1a1a1a" }}>
+        <div style={{ display: "flex", gap: pt(20), marginBottom: pt(28) }}>
+          {[["СберБанк", "36%"], ["Т-Банк", "36%"], ["ВТБ", "28%"]].map(([bank, pct], i) => (
+            <div key={i} style={{ flex: 1, textAlign: "center", border: `1px solid ${TEAL}40`, borderRadius: "6px", padding: `${pt(18)} ${pt(10)}`, background: "#f8fdfd" }}>
+              <div style={{ fontWeight: 700, fontSize: pt(40), color: TEAL, lineHeight: 1 }}>{pct}</div>
+              <div style={{ fontSize: pt(28), fontWeight: 600, marginTop: pt(8) }}>{bank}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: pt(32), lineHeight: 1.5, display: "flex", flexDirection: "column", gap: pt(16) }}>
+          <div className="flex items-start gap-3"><span style={{ color: TEAL, fontWeight: 700 }}>▸</span><span>Опрошено <strong style={{ color: TEAL }}>25</strong> человек</span></div>
+          <div className="flex items-start gap-3"><span style={{ color: TEAL, fontWeight: 700 }}>▸</span><span>Важнее всего — юзабилити и функциональность</span></div>
+          <div className="flex items-start gap-3"><span style={{ color: TEAL, fontWeight: 700 }}>▸</span><span>Опрос совпал с балльным рейтингом</span></div>
         </div>
       </div>
     </div>
@@ -315,17 +298,17 @@ const Slide8 = () => (
         <ArrowTitle title="Выявленные проблемы" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11.5px", color: "#1a1a1a", display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div style={{ color: "#1a1a1a", display: "flex", flexDirection: "column", gap: pt(28) }}>
         {[
-          { num: "1", title: "Информационная перегрузка", desc: "Особенно у СберБанка, частые изменения интерфейса" },
+          { num: "1", title: "Информационная перегрузка", desc: "Частые изменения интерфейса" },
           { num: "2", title: "Разный уровень безопасности", desc: "Т-Банк и ВТБ отстают от СберБанка" },
-          { num: "3", title: "Фрагментация бизнес-функционала", desc: "У Т-Банка и ВТБ отдельные приложения для бизнеса" },
+          { num: "3", title: "Фрагментация бизнес-функций", desc: "Отдельные приложения для бизнеса" },
         ].map(({ num, title, desc }) => (
-          <div key={num} className="flex items-start gap-3">
-            <div style={{ background: TEAL, color: "white", borderRadius: "50%", width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", fontWeight: 700, flexShrink: 0 }}>{num}</div>
+          <div key={num} className="flex items-start gap-4">
+            <div style={{ background: TEAL, color: "white", borderRadius: "50%", width: pt(56), height: pt(56), display: "flex", alignItems: "center", justifyContent: "center", fontSize: pt(34), fontWeight: 700, flexShrink: 0 }}>{num}</div>
             <div>
-              <div style={{ fontWeight: 700, color: TEAL, marginBottom: "2px" }}>{title}</div>
-              <div style={{ color: "#444" }}>→ {desc}</div>
+              <div style={{ fontWeight: 700, color: TEAL, fontSize: pt(34), lineHeight: 1.2 }}>{title}</div>
+              <div style={{ color: "#444", fontSize: pt(28), marginTop: pt(4) }}>{desc}</div>
             </div>
           </div>
         ))}
@@ -343,16 +326,16 @@ const Slide9 = () => (
         <ArrowTitle title="Тенденции развития" />
         <LogoFull />
       </div>
-      <div style={{ color: "#1a1a1a", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+      <div style={{ color: "#1a1a1a", display: "grid", gridTemplateColumns: "1fr 1fr", gap: pt(22) }}>
         {[
-          { title: "Экосистемный подход", desc: "Интеграция нефинансовых сервисов" },
+          { title: "Экосистемный подход", desc: "Интеграция сервисов" },
           { title: "Персонализация", desc: "Лидер — ВТБ" },
-          { title: "Биометрическая идентификация", desc: "Становится стандартом отрасли" },
+          { title: "Биометрия", desc: "Становится стандартом" },
           { title: "Инклюзивность", desc: "Адаптация для людей с ОВЗ" },
         ].map(({ title, desc }, i) => (
-          <div key={i} style={{ border: `1px solid ${TEAL}40`, borderLeft: `4px solid ${TEAL}`, padding: "20px 18px", borderRadius: "4px", background: "#f8fdfd" }}>
-            <div style={{ fontWeight: 700, color: TEAL, marginBottom: "6px", fontSize: "16px" }}>{title}</div>
-            <div style={{ color: "#555", fontSize: "13px", lineHeight: 1.4 }}>{desc}</div>
+          <div key={i} style={{ border: `1px solid ${TEAL}40`, borderLeft: `5px solid ${TEAL}`, padding: `${pt(22)} ${pt(24)}`, borderRadius: "4px", background: "#f8fdfd" }}>
+            <div style={{ fontWeight: 700, color: TEAL, marginBottom: pt(8), fontSize: pt(32) }}>{title}</div>
+            <div style={{ color: "#555", fontSize: pt(26), lineHeight: 1.3 }}>{desc}</div>
           </div>
         ))}
       </div>
@@ -373,19 +356,19 @@ const Slide10 = () => (
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              <th style={{ padding: "14px 16px", textAlign: "left", fontWeight: 700, fontSize: "16px" }}>Если вам важно...</th>
-              <th style={{ padding: "14px 16px", textAlign: "left", fontWeight: 700, fontSize: "16px" }}>Рекомендуемый банк</th>
+              <th style={{ padding: `${pt(16)} ${pt(20)}`, textAlign: "left", fontWeight: 700, fontSize: pt(28) }}>Если важно...</th>
+              <th style={{ padding: `${pt(16)} ${pt(20)}`, textAlign: "left", fontWeight: 700, fontSize: pt(28) }}>Банк</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["Максимальная функциональность и экосистема", "СберБанк"],
-              ["Кэшбэк и удобство повседневных операций", "Т-Банк"],
-              ["Доступность и настройка интерфейса", "ВТБ"],
+              ["Максимум функций и экосистема", "СберБанк"],
+              ["Кэшбэк и удобство операций", "Т-Банк"],
+              ["Доступность и настройка", "ВТБ"],
             ].map(([need, rec], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "20px 16px", borderBottom: "1px solid #e0eaea", lineHeight: 1.4, fontSize: "15px" }}>{need}</td>
-                <td style={{ padding: "20px 16px", borderBottom: "1px solid #e0eaea", fontWeight: 700, color: TEAL, fontSize: "17px" }}>{rec}</td>
+                <td style={{ padding: `${pt(26)} ${pt(20)}`, borderBottom: "1px solid #e0eaea", lineHeight: 1.3, fontSize: pt(28) }}>{need}</td>
+                <td style={{ padding: `${pt(26)} ${pt(20)}`, borderBottom: "1px solid #e0eaea", fontWeight: 700, color: TEAL, fontSize: pt(32) }}>{rec}</td>
               </tr>
             ))}
           </tbody>
@@ -405,27 +388,27 @@ const Slide11 = () => (
         <LogoFull />
       </div>
       <div style={{ color: "#1a1a1a" }}>
-        <div style={{ fontWeight: 700, color: TEAL, fontSize: "17px", marginBottom: "14px" }}>Итоговый рейтинг:</div>
-        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "22px" }}>
+        <div style={{ fontWeight: 700, color: TEAL, fontSize: pt(34), marginBottom: pt(16) }}>Итоговый рейтинг:</div>
+        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: pt(26) }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, fontSize: "15px" }}>Место</th>
-              <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, fontSize: "15px" }}>Банк</th>
-              <th style={{ padding: "12px 16px", textAlign: "center", fontWeight: 700, fontSize: "15px" }}>Баллы</th>
+              <th style={{ padding: `${pt(14)} ${pt(18)}`, textAlign: "left", fontWeight: 700, fontSize: pt(28) }}>Место</th>
+              <th style={{ padding: `${pt(14)} ${pt(18)}`, textAlign: "left", fontWeight: 700, fontSize: pt(28) }}>Банк</th>
+              <th style={{ padding: `${pt(14)} ${pt(18)}`, textAlign: "center", fontWeight: 700, fontSize: pt(28) }}>Баллы</th>
             </tr>
           </thead>
           <tbody>
             {[["1 место", "СберБанк", "90"], ["2 место", "Т-Банк", "89"], ["3 место", "ВТБ", "83"]].map(([place, bank, score], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", fontSize: "16px", fontWeight: 600 }}>{place}</td>
-                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", fontWeight: 600, fontSize: "16px" }}>{bank}</td>
-                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", textAlign: "center", fontWeight: 700, color: TEAL, fontSize: "20px" }}>{score}</td>
+                <td style={{ padding: `${pt(16)} ${pt(18)}`, borderBottom: "1px solid #e0eaea", fontSize: pt(30), fontWeight: 600 }}>{place}</td>
+                <td style={{ padding: `${pt(16)} ${pt(18)}`, borderBottom: "1px solid #e0eaea", fontWeight: 600, fontSize: pt(30) }}>{bank}</td>
+                <td style={{ padding: `${pt(16)} ${pt(18)}`, borderBottom: "1px solid #e0eaea", textAlign: "center", fontWeight: 700, color: TEAL, fontSize: pt(40) }}>{score}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div style={{ borderLeft: `4px solid ${TEAL}`, paddingLeft: "16px", lineHeight: 1.6, color: "#333", fontSize: "15px" }}>
-          <span style={{ fontWeight: 700 }}>Цель достигнута:</span> проведён сравнительный анализ, выявлены сильные и слабые стороны каждого приложения.
+        <div style={{ borderLeft: `5px solid ${TEAL}`, paddingLeft: pt(18), lineHeight: 1.4, color: "#333", fontSize: pt(30) }}>
+          <span style={{ fontWeight: 700, color: TEAL }}>Цель достигнута:</span> проведён сравнительный анализ приложений.
         </div>
       </div>
     </div>
