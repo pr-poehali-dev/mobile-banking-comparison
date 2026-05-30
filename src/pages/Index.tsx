@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const TEAL = "#2d7d7d";
-const TEAL_DARK = "#1f5c5c";
-const TEAL_BG = "#2d7d7d";
+const TEAL = "#256569";
+const TEAL_DARK = "#1a4a4d";
+const TEAL_BG = "#256569";
 
 const LOGO_URL = "https://cdn.poehali.dev/projects/e9e0bb1f-da1b-440a-a5db-876709c17cc2/bucket/12f68e51-ba6e-46f4-b8ec-093bf3ab2a36.jpg";
 
