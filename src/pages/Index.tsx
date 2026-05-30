@@ -11,11 +11,13 @@ const LogoFull = () => (
   <img src={LOGO_URL} alt="Финансовый университет" style={{ height: "44px", width: "auto", objectFit: "contain" }} />
 );
 
+const LOGO_WHITE_URL = "https://cdn.poehali.dev/projects/e9e0bb1f-da1b-440a-a5db-876709c17cc2/bucket/697531c8-8f8a-4db5-95b6-bd932db16921.png";
+
 const LogoWhite = ({ height = 56 }: { height?: number }) => (
   <img
-    src={LOGO_URL}
+    src={LOGO_WHITE_URL}
     alt="Финансовый университет"
-    style={{ height: `${height}px`, width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+    style={{ height: `${height}px`, width: "auto", objectFit: "contain" }}
   />
 );
 
