@@ -11,7 +11,7 @@ const LogoFull = () => (
   <img src={LOGO_URL} alt="Финансовый университет" style={{ height: "44px", width: "auto", objectFit: "contain" }} />
 );
 
-const LOGO_WHITE_URL = "https://cdn.poehali.dev/projects/e9e0bb1f-da1b-440a-a5db-876709c17cc2/bucket/89b292c1-e595-491c-b3e1-affda7c29159.png";
+const LOGO_WHITE_URL = "https://cdn.poehali.dev/projects/e9e0bb1f-da1b-440a-a5db-876709c17cc2/bucket/eb6249ec-1c78-4fba-ae0d-99de9cceed66.png";
 
 const LogoWhite = ({ height = 56 }: { height?: number }) => (
   <img
