@@ -343,17 +343,16 @@ const Slide9 = () => (
         <ArrowTitle title="Тенденции развития" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11.5px", color: "#1a1a1a", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+      <div style={{ color: "#1a1a1a", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
         {[
-          { icon: "🔗", title: "Экосистемный подход", desc: "Интеграция нефинансовых сервисов" },
-          { icon: "🎯", title: "Персонализация", desc: "Лидер — ВТБ" },
-          { icon: "🔐", title: "Биометрическая идентификация", desc: "Становится стандартом отрасли" },
-          { icon: "♿", title: "Инклюзивность", desc: "Адаптация для людей с ОВЗ" },
-        ].map(({ icon, title, desc }, i) => (
-          <div key={i} style={{ border: `1px solid ${TEAL}40`, padding: "12px", borderRadius: "4px", background: "#f8fdfd" }}>
-            <div style={{ fontSize: "22px", marginBottom: "6px" }}>{icon}</div>
-            <div style={{ fontWeight: 700, color: TEAL, marginBottom: "3px", fontSize: "11px" }}>{title}</div>
-            <div style={{ color: "#555", fontSize: "10.5px" }}>{desc}</div>
+          { title: "Экосистемный подход", desc: "Интеграция нефинансовых сервисов" },
+          { title: "Персонализация", desc: "Лидер — ВТБ" },
+          { title: "Биометрическая идентификация", desc: "Становится стандартом отрасли" },
+          { title: "Инклюзивность", desc: "Адаптация для людей с ОВЗ" },
+        ].map(({ title, desc }, i) => (
+          <div key={i} style={{ border: `1px solid ${TEAL}40`, borderLeft: `4px solid ${TEAL}`, padding: "20px 18px", borderRadius: "4px", background: "#f8fdfd" }}>
+            <div style={{ fontWeight: 700, color: TEAL, marginBottom: "6px", fontSize: "16px" }}>{title}</div>
+            <div style={{ color: "#555", fontSize: "13px", lineHeight: 1.4 }}>{desc}</div>
           </div>
         ))}
       </div>
@@ -370,23 +369,23 @@ const Slide10 = () => (
         <ArrowTitle title="Рекомендации пользователям" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11px", color: "#1a1a1a" }}>
+      <div style={{ color: "#1a1a1a" }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              <th style={{ padding: "7px 12px", textAlign: "left", fontWeight: 700, fontSize: "11px" }}>Если вам важно...</th>
-              <th style={{ padding: "7px 12px", textAlign: "left", fontWeight: 700, fontSize: "11px" }}>Рекомендуемый банк</th>
+              <th style={{ padding: "14px 16px", textAlign: "left", fontWeight: 700, fontSize: "16px" }}>Если вам важно...</th>
+              <th style={{ padding: "14px 16px", textAlign: "left", fontWeight: 700, fontSize: "16px" }}>Рекомендуемый банк</th>
             </tr>
           </thead>
           <tbody>
             {[
-              ["Максимальная функциональность и экосистема", "🟢 СберБанк"],
-              ["Кэшбэк и удобство повседневных операций", "🟡 Т-Банк"],
-              ["Доступность и настройка интерфейса", "🔵 ВТБ"],
+              ["Максимальная функциональность и экосистема", "СберБанк"],
+              ["Кэшбэк и удобство повседневных операций", "Т-Банк"],
+              ["Доступность и настройка интерфейса", "ВТБ"],
             ].map(([need, rec], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "10px 12px", borderBottom: "1px solid #e0eaea", lineHeight: 1.5 }}>{need}</td>
-                <td style={{ padding: "10px 12px", borderBottom: "1px solid #e0eaea", fontWeight: 700, color: TEAL }}>{rec}</td>
+                <td style={{ padding: "20px 16px", borderBottom: "1px solid #e0eaea", lineHeight: 1.4, fontSize: "15px" }}>{need}</td>
+                <td style={{ padding: "20px 16px", borderBottom: "1px solid #e0eaea", fontWeight: 700, color: TEAL, fontSize: "17px" }}>{rec}</td>
               </tr>
             ))}
           </tbody>
@@ -405,27 +404,27 @@ const Slide11 = () => (
         <ArrowTitle title="Общий вывод" />
         <LogoFull />
       </div>
-      <div style={{ fontSize: "11px", color: "#1a1a1a" }}>
-        <div style={{ fontWeight: 700, color: TEAL, fontSize: "12px", marginBottom: "10px" }}>Итоговый рейтинг:</div>
-        <table style={{ width: "70%", borderCollapse: "collapse", marginBottom: "16px" }}>
+      <div style={{ color: "#1a1a1a" }}>
+        <div style={{ fontWeight: 700, color: TEAL, fontSize: "17px", marginBottom: "14px" }}>Итоговый рейтинг:</div>
+        <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "22px" }}>
           <thead>
             <tr style={{ background: TEAL, color: "white" }}>
-              <th style={{ padding: "7px 12px", textAlign: "left", fontWeight: 700 }}>Место</th>
-              <th style={{ padding: "7px 12px", textAlign: "left", fontWeight: 700 }}>Банк</th>
-              <th style={{ padding: "7px 12px", textAlign: "center", fontWeight: 700 }}>Баллы</th>
+              <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, fontSize: "15px" }}>Место</th>
+              <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, fontSize: "15px" }}>Банк</th>
+              <th style={{ padding: "12px 16px", textAlign: "center", fontWeight: 700, fontSize: "15px" }}>Баллы</th>
             </tr>
           </thead>
           <tbody>
-            {[["🥇 1 место", "СберБанк", "90"], ["🥈 2 место", "Т-Банк", "89"], ["🥉 3 место", "ВТБ", "83"]].map(([place, bank, score], i) => (
+            {[["1 место", "СберБанк", "90"], ["2 место", "Т-Банк", "89"], ["3 место", "ВТБ", "83"]].map(([place, bank, score], i) => (
               <tr key={i} style={{ background: i % 2 === 0 ? "#f5fafa" : "white" }}>
-                <td style={{ padding: "8px 12px", borderBottom: "1px solid #e0eaea", fontSize: "13px" }}>{place}</td>
-                <td style={{ padding: "8px 12px", borderBottom: "1px solid #e0eaea", fontWeight: 600 }}>{bank}</td>
-                <td style={{ padding: "8px 12px", borderBottom: "1px solid #e0eaea", textAlign: "center", fontWeight: 700, color: TEAL, fontSize: "14px" }}>{score}</td>
+                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", fontSize: "16px", fontWeight: 600 }}>{place}</td>
+                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", fontWeight: 600, fontSize: "16px" }}>{bank}</td>
+                <td style={{ padding: "16px", borderBottom: "1px solid #e0eaea", textAlign: "center", fontWeight: 700, color: TEAL, fontSize: "20px" }}>{score}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div style={{ borderLeft: `3px solid ${TEAL}`, paddingLeft: "12px", lineHeight: 1.7, color: "#333" }}>
+        <div style={{ borderLeft: `4px solid ${TEAL}`, paddingLeft: "16px", lineHeight: 1.6, color: "#333", fontSize: "15px" }}>
           <span style={{ fontWeight: 700 }}>Цель достигнута:</span> проведён сравнительный анализ, выявлены сильные и слабые стороны каждого приложения.
         </div>
       </div>
@@ -437,13 +436,12 @@ const Slide11 = () => (
 // Слайд 12
 const Slide12 = () => (
   <SlideWrapper white={false}>
-    <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ color: "white" }}>
-      <div style={{ fontSize: "32px", marginBottom: "20px", opacity: 0.9 }}>🙏</div>
-      <div style={{ fontWeight: 700, fontSize: "26px", letterSpacing: "1px", marginBottom: "14px", textAlign: "center" }}>
+    <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ color: "white", padding: "0 6%" }}>
+      <div style={{ fontWeight: 700, fontSize: "42px", letterSpacing: "1px", marginBottom: "20px", textAlign: "center" }}>
         Спасибо за внимание!
       </div>
-      <div style={{ fontSize: "13px", opacity: 0.85, fontWeight: 500 }}>Вопросы к выступающему</div>
-      <div style={{ marginTop: "40px", fontSize: "10px", opacity: 0.6 }}>Кочетков Артём Николаевич · Группа 514 · Самара, 2026</div>
+      <div style={{ fontSize: "20px", opacity: 0.9, fontWeight: 500 }}>Вопросы к выступающему</div>
+      <div style={{ marginTop: "50px", fontSize: "14px", opacity: 0.65 }}>Кочетков Артём Николаевич · Группа 514 · Самара, 2026</div>
     </div>
     <div className="absolute bottom-3 right-4" style={{ fontSize: "9px", color: "rgba(255,255,255,0.4)" }}>12</div>
   </SlideWrapper>
