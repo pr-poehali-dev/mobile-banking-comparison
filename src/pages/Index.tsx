@@ -5,30 +5,18 @@ const TEAL = "#2d7d7d";
 const TEAL_DARK = "#1f5c5c";
 const TEAL_BG = "#2d7d7d";
 
-const LogoSVG = () => (
-  <svg width="90" height="52" viewBox="0 0 180 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="20,90 60,10 100,90" fill="none" stroke={TEAL} strokeWidth="6"/>
-    <polygon points="55,90 85,30 115,90" fill={TEAL} opacity="0.5"/>
-    <polygon points="80,90 105,45 130,90" fill="none" stroke={TEAL} strokeWidth="4"/>
-    <text x="0" y="104" fontFamily="Montserrat, sans-serif" fontSize="13" fontWeight="700" fill={TEAL} letterSpacing="1">ФИНАНСОВЫЙ</text>
-  </svg>
-);
+const LOGO_URL = "https://cdn.poehali.dev/projects/e9e0bb1f-da1b-440a-a5db-876709c17cc2/bucket/12f68e51-ba6e-46f4-b8ec-093bf3ab2a36.jpg";
 
 const LogoFull = () => (
-  <div className="flex items-start gap-2">
-    <div className="flex flex-col items-center">
-      <svg width="52" height="44" viewBox="0 0 130 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="18,82 55,12 92,82" fill="none" stroke={TEAL} strokeWidth="5"/>
-        <polygon points="48,82 74,32 100,82" fill={TEAL} opacity="0.55"/>
-        <polygon points="72,82 92,46 112,82" fill="none" stroke={TEAL} strokeWidth="3.5"/>
-      </svg>
-    </div>
-    <div style={{ fontFamily: "Montserrat, sans-serif" }}>
-      <div style={{ color: TEAL, fontWeight: 700, fontSize: "13px", lineHeight: 1.15, letterSpacing: "0.5px" }}>ФИНАНСОВЫЙ</div>
-      <div style={{ color: TEAL, fontWeight: 700, fontSize: "13px", lineHeight: 1.15, letterSpacing: "0.5px" }}>УНИВЕРСИТЕТ</div>
-      <div style={{ color: TEAL, fontWeight: 400, fontSize: "7px", lineHeight: 1.3, letterSpacing: "0.2px", maxWidth: "110px" }}>ПРИ ПРАВИТЕЛЬСТВЕ РОССИЙСКОЙ ФЕДЕРАЦИИ</div>
-    </div>
-  </div>
+  <img src={LOGO_URL} alt="Финансовый университет" style={{ height: "44px", width: "auto", objectFit: "contain" }} />
+);
+
+const LogoWhite = ({ height = 56 }: { height?: number }) => (
+  <img
+    src={LOGO_URL}
+    alt="Финансовый университет"
+    style={{ height: `${height}px`, width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+  />
 );
 
 const ArrowTitle = ({ title, bold = false }: { title: string; bold?: boolean }) => (
@@ -71,18 +59,7 @@ const Slide1 = () => (
     <div className="absolute inset-0 flex flex-col" style={{ color: "white", padding: "5% 7%" }}>
       {/* Шапка */}
       <div className="flex items-start justify-between mb-2">
-        <div className="flex items-start gap-3">
-          <svg width="60" height="52" viewBox="0 0 130 90" fill="none">
-            <polygon points="18,82 55,12 92,82" fill="none" stroke="white" strokeWidth="5"/>
-            <polygon points="48,82 74,32 100,82" fill="white" opacity="0.45"/>
-            <polygon points="72,82 92,46 112,82" fill="none" stroke="white" strokeWidth="3.5"/>
-          </svg>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: "14px", lineHeight: 1.2, letterSpacing: "0.5px" }}>ФИНАНСОВЫЙ</div>
-            <div style={{ fontWeight: 700, fontSize: "14px", lineHeight: 1.2, letterSpacing: "0.5px" }}>УНИВЕРСИТЕТ</div>
-            <div style={{ fontWeight: 400, fontSize: "8px", lineHeight: 1.4, maxWidth: "130px", opacity: 0.85 }}>ПРИ ПРАВИТЕЛЬСТВЕ РОССИЙСКОЙ ФЕДЕРАЦИИ</div>
-          </div>
-        </div>
+        <LogoWhite height={56} />
         <div style={{ textAlign: "center", fontSize: "9px", lineHeight: 1.6, opacity: 0.9, maxWidth: "340px" }}>
           <div>Федеральное государственное образовательное бюджетное</div>
           <div>учреждение высшего образования</div>
